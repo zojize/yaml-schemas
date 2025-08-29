@@ -1,0 +1,233 @@
+{
+    "type": "array",
+    "items": {
+        "anyOf": [
+            {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "const": "experience_report"
+                    },
+                    "notes": {
+                        "type": "string"
+                    },
+                    "tools_used": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "useful_online_posts": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "type",
+                    "tools_used",
+                    "useful_online_posts"
+                ]
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "const": "fix"
+                    },
+                    "flaky_test_id": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "pr_link": {
+                        "type": "string",
+                        "minLength": 1,
+                        "pattern": "https://github.com/.*/.*/pull/\\d*"
+                    },
+                    "notes": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "type",
+                    "flaky_test_id",
+                    "pr_link"
+                ]
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "const": "skipped_reason"
+                    },
+                    "flaky_test_id": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "could_download_repo": {
+                        "type": "boolean"
+                    },
+                    "could_checkout_commit": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "boolean"
+                            }
+                        ]
+                    },
+                    "could_build_project": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "boolean"
+                            }
+                        ]
+                    },
+                    "could_execute_test": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "boolean"
+                            }
+                        ]
+                    },
+                    "observed_test_success": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "boolean"
+                            }
+                        ]
+                    },
+                    "observed_test_failure": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "boolean"
+                            }
+                        ]
+                    },
+                    "test_exists_in_latest_branch": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "boolean"
+                            }
+                        ]
+                    },
+                    "hours_spent": {
+                        "type": "number"
+                    },
+                    "explanation": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "notes": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "type",
+                    "flaky_test_id",
+                    "could_download_repo",
+                    "could_checkout_commit",
+                    "could_build_project",
+                    "could_execute_test",
+                    "observed_test_success",
+                    "observed_test_failure",
+                    "test_exists_in_latest_branch",
+                    "hours_spent",
+                    "explanation"
+                ]
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "const": "found_flaky_test"
+                    },
+                    "project_url": {
+                        "type": "string",
+                        "maxLength": 300
+                    },
+                    "sha_detected": {
+                        "type": "string",
+                        "minLength": 40,
+                        "maxLength": 40,
+                        "pattern": "[a-z0-9]{40}"
+                    },
+                    "module_path": {
+                        "type": "string",
+                        "maxLength": 100
+                    },
+                    "test_name": {
+                        "type": "string",
+                        "maxLength": 300
+                    },
+                    "category": {
+                        "type": "string",
+                        "maxLength": 30
+                    },
+                    "log_files": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "command": {
+                                    "anyOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "stdout_file": {
+                                    "type": "string",
+                                    "description": "Only the path to the stdout; not the whole stdout",
+                                    "maxLength": 100
+                                }
+                            },
+                            "required": [
+                                "command",
+                                "stdout_file"
+                            ]
+                        }
+                    },
+                    "pr_link": {
+                        "type": "string"
+                    },
+                    "notes": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "type",
+                    "project_url",
+                    "sha_detected",
+                    "module_path",
+                    "test_name",
+                    "category",
+                    "log_files"
+                ]
+            }
+        ]
+    }
+}
