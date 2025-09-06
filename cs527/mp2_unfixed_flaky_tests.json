@@ -1,0 +1,52 @@
+{
+  "type": "array",
+  "items": {
+    "anyOf": [
+      {
+        "type": "object",
+        "properties": {
+          "type": {
+            "const": "unfixed_flaky_test"
+          },
+          "project_name": {
+            "type": "string"
+          },
+          "flakiness_report_url": {
+            "type": "string"
+          },
+          "estimated_hours_for_527_student_to_fix": {
+            "type": "string"
+          },
+          "speculated_flaky_test_category": {
+            "type": "string",
+            "enum": [
+              "Change assertion",
+              "Change condition",
+              "Lock atomic operation",
+              "Lock atomic region",
+              "Make deterministic",
+              "Make structure thread local",
+              "Other",
+              "Remove dependency",
+              "Reorder execution",
+              "Setup/clean up state",
+              "Sleep",
+              "WaitFor"
+            ]
+          },
+          "reproducing_flaky_test_experience": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "project_name",
+          "flakiness_report_url",
+          "estimated_hours_for_527_student_to_fix",
+          "speculated_flaky_test_category",
+          "reproducing_flaky_test_experience"
+        ]
+      }
+    ]
+  }
+}
