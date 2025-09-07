@@ -19,19 +19,18 @@
           },
           "speculated_flaky_test_category": {
             "type": "string",
-            "enum": [
-              "Change assertion",
-              "Change condition",
-              "Lock atomic operation",
-              "Lock atomic region",
-              "Make deterministic",
-              "Make structure thread local",
-              "Other",
-              "Remove dependency",
-              "Reorder execution",
-              "Setup/clean up state",
-              "Sleep",
-              "WaitFor"
+            "enum": [               
+              "Async wait",
+              "Concurrency",
+              "Floating point operations",
+              "I/O",
+              "Network",
+              "OS",
+              "Randomness",
+              "Resource leak",
+              "Test order dependency",
+              "Time",
+              "Unordered collections"
             ]
           },
           "reproducing_flaky_test_experience": {
